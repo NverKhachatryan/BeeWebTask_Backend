@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const workspaceController_1 = require("../controllers/workspaceController");
+const authenticate_1 = require("../middleware/authenticate");
+const router = express.Router();
+router.get('/slug/:slug', authenticate_1.authenticateToken, workspaceController_1.checkWorkspaceSlug);
+router.post('/', authenticate_1.authenticateToken, workspaceController_1.createWorkspace);
+router.get('/', authenticate_1.authenticateToken, workspaceController_1.getWorkspace);
+router.put('/:id', authenticate_1.authenticateToken, workspaceController_1.updateWorkspace);
+router.delete('/:id', authenticate_1.authenticateToken, workspaceController_1.deleteWorkspace);
+exports.default = router;
